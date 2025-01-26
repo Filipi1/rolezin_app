@@ -30,7 +30,31 @@ class RoomEntity {
     this.geolocation,
   });
 
+  factory RoomEntity.fromJson(Map<String, dynamic> json) {
+    return RoomEntity(
+        id: json["id"],
+        name: json["name"],
+        partners: (json["partners"] as List).map((partner)=> UserEntity()).toList(),
+        items: (json["items"] as List).map((partner)=> ItemEntity()).toList(),
+        establishmentBonusPercent: double.parse(json["establishmentBonusPercent"].toString()),
+        bruteBalance: double.parse(json["bruteBalance"].toString()),
+        totalBalance: double.parse(json["totalBalance"].toString()),
+        memories: (json["memories"] as List).map((partner)=> RoomMemoryEntity()).toList(),
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"],
+        geolocation: json["geolocation"]
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is RoomEntity && id == other.id;
+  }
+
   double getBonusIncreasedBalance() {
     return double.parse((totalBalance - bruteBalance).toStringAsFixed(2));
   }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
 }
