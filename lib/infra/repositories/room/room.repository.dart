@@ -9,7 +9,10 @@ class RoomRepository extends Repository implements RoomRepositoryBase  {
 
   @override
   Future<RoomEntity?> fetchRoom({required int roomId}) async {
-    HttpResponse response = await adapter.get(options: HttpBaseOptions(path: "/room/$roomId"));
+    HttpResponse response = await adapter.request(options: HttpBaseOptions(
+      path: "/room/$roomId",
+      method: HttpMethod.get
+    ));
     if (response.body == null) {
       return null;
     }
@@ -18,7 +21,10 @@ class RoomRepository extends Repository implements RoomRepositoryBase  {
 
   @override
   Future<List<RoomEntity>> fetchRooms({required String groupId}) async {
-    HttpResponse response = await adapter.get(options: HttpBaseOptions(path: "/rooms"));
+    HttpResponse response = await adapter.request(options: HttpBaseOptions(
+        path: "/rooms",
+        method: HttpMethod.get
+    ));
     if (response.body == null) {
       return [];
     }

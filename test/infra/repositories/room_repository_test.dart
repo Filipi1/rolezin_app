@@ -6,13 +6,7 @@ import 'package:rolezin_app/infra/repositories/room/room.repository.dart';
 
 class HttpAdapterSpy implements HttpAdapter {
   @override
-  Future<HttpResponse> delete({required HttpBaseOptions options}) {
-    // TODO: implement get
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<HttpResponse> get({required HttpBaseOptions options}) async {
+  Future<HttpResponse> request({required HttpBaseOptions options}) async {
     const room = {
       "id": 1,
       "name": "Role na casa de praia!",
@@ -31,23 +25,12 @@ class HttpAdapterSpy implements HttpAdapter {
         body: room
     );
   }
-
-  @override
-  Future<HttpResponse> post({required HttpBaseOptions options}) {
-    // TODO: implement post
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<HttpResponse> put({required HttpBaseOptions options}) {
-    // TODO: implement put
-    throw UnimplementedError();
-  }
 }
 
 
 void main() {
   test("should request with correct value when call fetchRoom", () async {
+    HttpAdapterSpy httpAdapter = HttpAdapterSpy();
     RoomEntity fakeEntity = RoomEntity.fromJson({
       "id": 1,
       "name": "Role na casa de praia!",
@@ -60,8 +43,7 @@ void main() {
       "memories": <Map<String, dynamic>>[],
       "createdAt": "2023-05-20T00:00:00"
     });
-
-    final repository = RoomRepository(adapter: HttpAdapterSpy());
+    final repository = RoomRepository(adapter: httpAdapter);
 
     RoomEntity? sut = await repository.fetchRoom(roomId: 10);
 
