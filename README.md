@@ -1,6 +1,9 @@
-# rolezin_app
+# Rolezin
 
-A new Flutter project.
+É um aplicativo para exercitar boas práticas e conhecimento de Flutter.
+Ele será um gerênciador de "Rolês" onde ele ajudará a dividir a conta para cada participante
+dos pedidos em restaurantes, bares e etc. Considerando valores adicionais como os 10% e
+servindo também para guardar fotos (opiticial) daquele momento para futura consultas e retrospectivas.
 
 ## Getting Started
 

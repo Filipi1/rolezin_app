@@ -46,13 +46,27 @@ class RoomEntity {
     );
   }
 
+  double getBonusIncreasedBalance() {
+    return double.parse((totalBalance - bruteBalance).toStringAsFixed(2));
+  }
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "partners": partners.map((partner)=> partner.toJson()).toList(),
+    "items": items.map((partner)=> partner.toJson()).toList(),
+    "establishmentBonusPercent": establishmentBonusPercent,
+    "bruteBalance": bruteBalance,
+    "totalBalance": totalBalance,
+    "memories": memories.map((partner) => partner.toJson()).toList(),
+    "createdAt": createdAt,
+    "updatedAt": updatedAt,
+    "geolocation": geolocation?.toJson()
+  };
+
   @override
   bool operator ==(Object other) {
     return other is RoomEntity && id == other.id;
-  }
-
-  double getBonusIncreasedBalance() {
-    return double.parse((totalBalance - bruteBalance).toStringAsFixed(2));
   }
 
   @override

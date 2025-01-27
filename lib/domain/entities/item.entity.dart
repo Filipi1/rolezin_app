@@ -1,1 +1,3 @@
-class ItemEntity {}
+class ItemEntity {
+  toJson() => {};
+}

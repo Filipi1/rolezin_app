@@ -3,4 +3,9 @@ class GeolocationEntity {
   final num longitude;
 
   GeolocationEntity(this.latitude, this.longitude);
+
+  toJson() => {
+    "latitude": latitude,
+    "longitude": longitude
+  };
 }

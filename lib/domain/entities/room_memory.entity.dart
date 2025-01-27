@@ -1,1 +1,3 @@
-class RoomMemoryEntity {}
+class RoomMemoryEntity {
+  toJson() => {};
+}

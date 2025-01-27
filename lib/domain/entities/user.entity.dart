@@ -1,1 +1,3 @@
-class UserEntity {}
+class UserEntity {
+  toJson() => {};
+}
